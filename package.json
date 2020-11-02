@@ -1,0 +1,23 @@
+{
+  "name": "shopping-website",
+  "version": "1.0.0",
+  "description": "MERN shopping app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CobyPear/shopping-website.git"
+  },
+  "keywords": [],
+  "author": "Coby Sher",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CobyPear/shopping-website/issues"
+  },
+  "homepage": "https://github.com/CobyPear/shopping-website#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
