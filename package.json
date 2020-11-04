@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MERN shopping app",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
@@ -22,7 +23,9 @@
   "homepage": "https://github.com/CobyPear/shopping-website#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.11",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"
