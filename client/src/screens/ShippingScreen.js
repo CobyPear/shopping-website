@@ -3,6 +3,7 @@ import { Form, Button, InputGroup, Dropdown, DropdownButton } from 'react-bootst
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CustomMenu from '../components/CustomMenu'
+import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
 
 
@@ -18,7 +19,7 @@ const ShippingScreen = ({ history }) => {
     const [state, setState] = useState(shippingAddress.state)
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
     const [country, setCountry] = useState(shippingAddress.country)
-    const [value, setValue] = useState()
+    const [value, setValue] = useState('')
 
     const dispatch = useDispatch()
 
@@ -29,6 +30,7 @@ const ShippingScreen = ({ history }) => {
     }
     return (
         <FormContainer>
+            <CheckoutSteps step1 step2 />
             <h1>Shipping</h1>
             <Form onSubmit={submitHandler}>
                 <Form.Group controlId='address'>
@@ -58,16 +60,19 @@ const ShippingScreen = ({ history }) => {
                         as={InputGroup.Prepend}
                         variant='secondary'
                         title='State'
-                        id='input-group-dropdown'>
-                        <CustomMenu>
+                        id='input-group-dropdown'
+                        className='state-dropdown'>
+                        <CustomMenu
+                            value={value}
+                            setValue={setValue}>
                             {statesAbbr.map((x, i) => {
                                 return <Dropdown.Item
                                     as={'option'}
                                     className='state'
                                     key={x}
-                                    value={states[i]}
+                                    value={x}
                                     onClick={e => setState(e.target.value)}>
-                                    {x}
+                                    {states[i]}
                                 </Dropdown.Item>
                             })}
                         </CustomMenu>
@@ -75,7 +80,7 @@ const ShippingScreen = ({ history }) => {
                     <Form.Control
                         type='text'
                         placeholder={state ? state : 'Enter state'}
-                        defaultValue={state}
+                        value={state}
                         required
                         onChange={e => setState(e.target.value)}>
                     </Form.Control>

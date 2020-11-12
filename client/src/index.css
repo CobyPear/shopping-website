@@ -30,7 +30,7 @@ h3 {
   margin: 0.1rem;
 }
 
-.dropdown-menu{
+.state-dropdown > .dropdown-menu{
   height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
