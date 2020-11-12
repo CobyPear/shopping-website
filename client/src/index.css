@@ -29,3 +29,9 @@ h3 {
 .rating span {
   margin: 0.1rem;
 }
+
+.dropdown-menu{
+  height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
