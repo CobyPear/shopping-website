@@ -16,7 +16,7 @@ const ShippingScreen = ({ history }) => {
 
     const [address, setAddress] = useState(shippingAddress.address)
     const [city, setCity] = useState(shippingAddress.city)
-    const [state, setState] = useState(shippingAddress.state)
+    const [userState, setUserState] = useState(shippingAddress.userState)
     const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
     const [country, setCountry] = useState(shippingAddress.country)
     const [value, setValue] = useState('')
@@ -25,7 +25,7 @@ const ShippingScreen = ({ history }) => {
 
     const submitHandler = e => {
         e.preventDefault()
-        dispatch(saveShippingAddress({ address, city, state, postalCode, country }))
+        dispatch(saveShippingAddress({ address, city, userState, postalCode, country }))
         history.push('/payment')
     }
     return (
@@ -71,7 +71,7 @@ const ShippingScreen = ({ history }) => {
                                     className='state'
                                     key={x}
                                     value={x}
-                                    onClick={e => setState(e.target.value)}>
+                                    onClick={e => setUserState(e.target.value)}>
                                     {states[i]}
                                 </Dropdown.Item>
                             })}
@@ -79,10 +79,10 @@ const ShippingScreen = ({ history }) => {
                     </DropdownButton>
                     <Form.Control
                         type='text'
-                        placeholder={state ? state : 'Enter state'}
-                        value={state}
+                        placeholder={userState ? userState : 'Enter state'}
+                        value={userState}
                         required
-                        onChange={e => setState(e.target.value)}>
+                        onChange={e => setUserState(e.target.value)}>
                     </Form.Control>
                 </InputGroup>
 
