@@ -117,7 +117,7 @@ export const getUserDetails = (id) => async(dispatch, getState) => {
         }
 
         const { data } = await axios.get(
-            `api/users/${id}`,
+            `/api/users/${id}`,
             config
         )
 
