@@ -96,7 +96,7 @@ const ProductListScreen = ({ history }) => {
                                 {products.map(product => (
                                     <tr key={product._id}>
                                         <td>{product._id}</td>
-                                        <td>{product.name}</td>
+                                        <td><a href={`/product/${product._id}`}>{product.name}</a></td>
                                         <td>{product.category}</td>
                                         <td>{product.brand}</td>
                                         <td>{product.countInStock}</td>
