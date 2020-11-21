@@ -112,7 +112,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         })
     } catch (error) {
         dispatch({
-            type: ORDER_LIST_USER_FAIL,
+            type: ORDER_PAY_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message
@@ -144,7 +144,7 @@ export const listUserOrders = () => async (dispatch, getState) => {
         })
     } catch (error) {
         dispatch({
-            type: ORDER_PAY_FAIL,
+            type: ORDER_LIST_USER_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message
@@ -155,7 +155,7 @@ export const listUserOrders = () => async (dispatch, getState) => {
 export const listOrders = () => async (dispatch, getState) => {
     try {
         dispatch({
-            type: ORDER_LIST_USER_REQUEST
+            type: ORDER_LIST_REQUEST
         })
 
         const {
@@ -168,15 +168,15 @@ export const listOrders = () => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.get(`/api/orders/`, config)
+        const { data } = await axios.get(`/api/orders/myorders`, config)
 
         dispatch({
-            type: ORDER_LIST_USER_SUCCESS,
+            type: ORDER_LIST_SUCCESS,
             payload: data,
         })
     } catch (error) {
         dispatch({
-            type: ORDER_PAY_FAIL,
+            type: ORDER_LIST_FAIL,
             payload: error.response && error.response.data.message 
             ? error.response.data.message 
             : error.message
