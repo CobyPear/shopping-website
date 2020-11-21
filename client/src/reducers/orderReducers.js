@@ -111,7 +111,7 @@ export const orderListUserReducer = (state = { orders: {} }, action) => {
     }
 }
 
-export const orderListReducer = (state = { orders: {} }, action) => {
+export const orderListReducer = (state = { orders: [] }, action) => {
     switch (action.type) {
         case ORDER_LIST_REQUEST:
             return {
@@ -128,7 +128,7 @@ export const orderListReducer = (state = { orders: {} }, action) => {
                 error: action.payload
             }
         case ORDER_LIST_RESET:
-            return { orders: {} }
+            return { orders: [] }
         default:
             return state
     }
