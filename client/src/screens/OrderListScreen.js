@@ -23,10 +23,6 @@ const OrderListScreen = ({ history }) => {
         }
     }, [dispatch, history, userInfo])
 
-    function deleteHandler(id) {
-        // delete order
-    }
-
     return (
         <>
             <h1>Orders</h1>
