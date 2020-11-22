@@ -4,7 +4,7 @@ import Order from '../models/orderModel.js'
 // @desc Create new order
 // @route POST /api/orders
 // @access Private
-const addOrderItems = asyncHandler(async (req, res) => {
+const addOrderItems = asyncHandler(async(req, res) => {
     const {
         orderItems,
         shippingAddress,
@@ -40,7 +40,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
 // @desc Get order by id
 // @route GET /api/orders/:id
 // @access Private
-const getOrderById = asyncHandler(async (req, res) => {
+const getOrderById = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id).populate('user', 'name email')
 
     if (order) {
@@ -54,7 +54,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 // @desc Update order to paid
 // @route PUT /api/orders/:id/pay
 // @access Private
-const updateOrderToPaid = asyncHandler(async (req, res) => {
+const updateOrderToPaid = asyncHandler(async(req, res) => {
     const order = await Order.findById(req.params.id)
 
     if (order) {
@@ -79,9 +79,17 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @desc Get logged in user orders
 // @route GET /api/orders/myorders
 // @access Private
-const getUserOrders = asyncHandler(async (req, res) => {
+const getUserOrders = asyncHandler(async(req, res) => {
     const orders = await Order.find({ user: req.user._id })
     res.json(orders)
 })
 
-export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders }
+// @desc Get all orders
+// @route GET /api/orders/
+// @access Private/Admin
+const getOrders = asyncHandler(async(req, res) => {
+    const orders = await Order.find({}).populate('user', 'id name email')
+    res.json(orders)
+})
+
+export { addOrderItems, getOrderById, updateOrderToPaid, getUserOrders, getOrders }
