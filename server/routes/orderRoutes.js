@@ -8,6 +8,6 @@ router.route('/').post(protect, addOrderItems)
 router.route('/myOrders').get(protect, getUserOrders)
 router.route('/:id').get(protect, getOrderById)
 router.route('/:id/pay').put(protect, updateOrderToPaid)
-router.route('/:id/delivered').put(protect, isAdmin, updateOrderToDelivered)
+router.route('/:id/deliver').put(protect, isAdmin, updateOrderToDelivered)
 
 export default router
