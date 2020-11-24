@@ -15,13 +15,10 @@ connectDB()
 
 const PORT = process.env.PORT || 8080
 const app = express()
-app.use(logger('dev'))
+if (process.env.NODE_ENV) {
+    app.use(logger('dev'))
+}
 app.use(express.json())
-
-
-app.get('/', (req, res) => {
-    res.send('API is running')
-})
 
 app.use('/api/products', productRoutes)
 app.use('/api/orders', orderRoutes)
