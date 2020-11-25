@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Product from '../components/Product'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
