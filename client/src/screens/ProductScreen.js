@@ -151,10 +151,10 @@ const ProductScreen = ({ history, match }) => {
                                                     <Form onSubmit={addReviewHandler}>
                                                         <Form.Group controlId='rating'>
                                                             <Form.Label>Rating</Form.Label>
-                                                            <Form.Control 
-                                                            as='select'
-                                                            value={rating}
-                                                            onChange={(e)=> setRating(e.target.value)}>
+                                                            <Form.Control
+                                                                as='select'
+                                                                value={rating}
+                                                                onChange={(e) => setRating(e.target.value)}>
                                                                 <option value=''>Select...</option>
                                                                 <option value='1'>1 - Bad</option>
                                                                 <option value='2'>2 - Fair</option>
@@ -171,10 +171,10 @@ const ProductScreen = ({ history, match }) => {
                                                                 value={comment}
                                                                 onChange={(e) => setComment(e.target.value)}></Form.Control>
                                                         </Form.Group>
-                                                        <Button 
+                                                        <Button
                                                             type='submit'
                                                             variant='primary'>
-                                                                Submit
+                                                            Submit
                                                             </Button>
                                                     </Form>
                                                 ) :
@@ -184,7 +184,6 @@ const ProductScreen = ({ history, match }) => {
                                 </Col>
                             </Row>
                         </>)}
-
         </>
     )
 }
