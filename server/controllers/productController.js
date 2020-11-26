@@ -142,6 +142,23 @@ const createProductReview = asyncHandler(async(req, res) => {
     }
 })
 
+// @desc     Delete a review
+// @route    Delete /api/products/:id/reviews/:reviewId
+// @access   Private/Admin
+const deleteProductReview = asyncHandler(async(req, res) => {
+    const product = await Product.findById(req.params.id)
+    const review = await product.reviews.id(req.params.reviewId)
+
+    if (review) {
+        await review.remove()
+        await product.save()
+        res.json({ message: 'Review deleted' })
+    } else {
+        res.status(404)
+        throw new Error('Product not found')
+    }
+})
+
 // @desc     Get top rated products
 // @route    GET /api/products/top
 // @access   Public
@@ -158,5 +175,6 @@ export {
     createProduct,
     updateProduct,
     createProductReview,
-    getTopProducts
+    getTopProducts,
+    deleteProductReview
 }
