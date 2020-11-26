@@ -7,7 +7,8 @@ import {
     deleteProductById,
     createProduct,
     updateProduct,
-    createProductReview
+    createProductReview,
+    getTopProducts
 } from '../controllers/productController.js'
 
 
@@ -20,5 +21,7 @@ router.route('/:id')
     .put(protect, isAdmin, updateProduct)
 router.route('/:id/reviews')
     .post(protect, createProductReview)
+router.route('/top')
+    .get(getTopProducts)
 
 export default router
