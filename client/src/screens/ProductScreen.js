@@ -5,8 +5,8 @@ import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { listProductDetails, createProductReview } from '../actions/productActions'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import { listProductDetails, createProductReview, deleteProductReview } from '../actions/productActions'
+import { PRODUCT_CREATE_REVIEW_RESET, PRODUCT_DELETE_REVIEW_RESET } from '../constants/productConstants'
 
 const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
@@ -23,6 +23,9 @@ const ProductScreen = ({ history, match }) => {
     const productReviewCreate = useSelector(state => state.productReviewCreate)
     const { success: successProductReview, error: errorProductReview } = productReviewCreate
 
+    const productReviewDelete = useSelector(state => state.productReviewDelete)
+    const { success: successProductDelete, error: errorProductDelete } = productReviewDelete
+
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
@@ -33,20 +36,26 @@ const ProductScreen = ({ history, match }) => {
             setComment('')
             dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
         }
+        if (successProductDelete) {
+            alert('Review Deleted')
+            dispatch({ type: PRODUCT_DELETE_REVIEW_RESET })
+        }
         dispatch(listProductDetails(match.params.id))
-    }, [dispatch, match, successProductReview])
+    }, [dispatch, match, successProductReview, successProductDelete])
 
     const addToCartHandler = () => {
         history.push(`/cart/${match.params.id}?qty=${qty}`)
     }
     const addReviewHandler = e => {
         e.preventDefault()
-        console.log('hello')
         const review = {
             rating,
             comment
         }
         dispatch(createProductReview(productId, review))
+    }
+    const deleteHandler = e => {
+        dispatch(deleteProductReview(productId, e.target.dataset.review))
     }
 
     return (
@@ -141,11 +150,18 @@ const ProductScreen = ({ history, match }) => {
                                                 <Rating value={review.rating} text='' />
                                                 <p>{review.createdAt.substring(0, 10)}</p>
                                                 <p>{review.comment}</p>
+                                                {userInfo.isAdmin &&
+                                                    <Button
+                                                        data-review={review._id}
+                                                        onClick={deleteHandler}>
+                                                        <i data-review={review._id} className='fa fa-trash'></i>
+                                                    </Button>}
                                             </ListGroup.Item>
                                         ))}
+                                        {errorProductDelete && <Message variant='danger'>{errorProductDelete}</Message>}
                                         <ListGroup.Item>
                                             <h2>Write a review</h2>
-                                            {errorProductReview && <Message variant='danger'>{error}</Message>}
+                                            {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
                                             {userInfo ?
                                                 (
                                                     <Form onSubmit={addReviewHandler}>
