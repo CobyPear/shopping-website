@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Product from '../components/Product'
 import { Row, Col, } from 'react-bootstrap'
+import { Helmet } from 'react-helmet'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import Paginate from '../components/Paginate'
@@ -24,6 +25,9 @@ const HomeScreen = ({ match }) => {
 
     return (
         <>
+        <Helmet>
+            <title>Welcome to the shop | Home</title>
+        </Helmet>
         {!keyword && <ProductsCarousel />}
             <h1>Latest Products</h1>
             {loading ? (
