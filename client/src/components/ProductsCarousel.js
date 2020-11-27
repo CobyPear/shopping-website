@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom'
 import { Image, Carousel } from 'react-bootstrap'
 import Loader from './Loader'
 import Message from './Message'
-import { listTopProducts } from '../actions/productActions' 
+import { listTopProducts } from '../actions/productActions'
 
 const ProductsCarousel = () => {
     const dispatch = useDispatch()
 
     const productTopRated = useSelector(state => state.productTopRated)
-    const { loading, error, products} = productTopRated
+    const { loading, error, products } = productTopRated
 
     useEffect(() => {
         dispatch(listTopProducts())
@@ -21,9 +21,14 @@ const ProductsCarousel = () => {
             {products.map(product => (
                 <Carousel.Item key={product._id}>
                     <Link to={`/product/${product._id}`}>
-                        <Image src={product.image} alt={product.name} className='d-flex h-75 w-50 m-auto' roundedCircle fluid />
+                        <Image
+                            src={product.image}
+                            alt={product.name}
+                            className='d-flex h-75 w-50 m-auto'
+                            roundedCircle
+                            fluid />
                         <Carousel.Caption className='carousel-caption'>
-                            <h2 fluid>{product.name} ({product.price})</h2>
+                            <h2 fluid>{product.name} (${product.price})</h2>
                         </Carousel.Caption>
                     </Link>
                 </Carousel.Item>
