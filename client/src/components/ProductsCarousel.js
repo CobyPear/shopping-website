@@ -28,7 +28,7 @@ const ProductsCarousel = () => {
                             roundedCircle
                             fluid />
                         <Carousel.Caption className='carousel-caption'>
-                            <h2 fluid>{product.name} ({product.price})</h2>
+                            <h2 fluid>{product.name} (${product.price})</h2>
                         </Carousel.Caption>
                     </Link>
                 </Carousel.Item>
