@@ -26,11 +26,12 @@ h1 {
 h3 {
   padding: 1rem 0;
 }
+
 .rating span {
   margin: 0.1rem;
 }
 
-.state-dropdown > .dropdown-menu{
+.state-dropdown>.dropdown-menu {
   height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -38,4 +39,14 @@ h3 {
 
 .card {
   height: 93%;
+}
+
+
+/* Carousel */
+
+@media screen and (max-width: 768px) {
+
+  .carousel-caption h2 {
+    font-size: .98rem;
+  }
 }
