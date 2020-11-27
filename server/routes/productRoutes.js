@@ -16,6 +16,7 @@ import {
 router.route('/')
     .get(getProducts)
     .post(protect, isAdmin, createProduct)
+    router.get('/top', getTopProducts)
 router.route('/:id')
     .get(getProductById)
     .delete(protect, isAdmin, deleteProductById)
@@ -24,7 +25,5 @@ router.route('/:id/reviews')
     .post(protect, createProductReview)
 router.route('/:id/reviews/:reviewId')
     .delete(protect, isAdmin, deleteProductReview)
-router.route('/top')
-    .get(getTopProducts)
 
 export default router
